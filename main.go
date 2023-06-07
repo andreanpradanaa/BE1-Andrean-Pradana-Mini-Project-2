@@ -1,23 +1,33 @@
 package main
 
 import (
-	"github.com/dibimbing-satkom-indo/onion-architecture-go/dto"
-	"github.com/dibimbing-satkom-indo/onion-architecture-go/modules/user"
+	"fmt"
+	"github.com/gin-gonic/gin"
+	"miniproject2/modules/admin"
+	user "miniproject2/modules/customer"
+	"miniproject2/utils/db"
 )
 
 func main() {
-	var request = dto.Request{
-		Body: map[string]string{
-			"id": "1",
-		},
-		Method: "GET",
-		Path:   "/get-user",
-		Header: map[string]string{
-			"Authorization": "token",
-		},
-	}
+	router := gin.New()
 
-	router := user.NewRouter()
-	router.Route(request)
+	// open connection db
+	dbCrud := db.GormMysql()
+
+	fmt.Println("database connected..!")
+
+	versionRoute := router.Group("/v1")
+
+	adminHandler := admin.NewRouter(dbCrud)
+	adminHandler.Handle(versionRoute)
+
+	userHandler := user.NewRouter(dbCrud)
+	userHandler.Handle(versionRoute)
+
+	errRouter := router.Run(":8080")
+	if errRouter != nil {
+		fmt.Println("error running server", errRouter)
+		return
+	}
 
 }
