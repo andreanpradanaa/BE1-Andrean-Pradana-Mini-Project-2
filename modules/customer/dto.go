@@ -6,8 +6,8 @@ import (
 )
 
 type CustomerParam struct {
-	FirstName string `json:"firstname"`
-	LastName  string `json:"lastname"`
+	Firstname string `json:"firstname"`
+	Lastname  string `json:"lastname"`
 	Email     string `json:"email"`
 	Avatar    string `json:"avatar"`
 }

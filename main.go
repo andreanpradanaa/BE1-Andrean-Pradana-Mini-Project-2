@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
-	"github.com/gin-gonic/gin"
 	"miniproject2/modules/admin"
-	user "miniproject2/modules/customer"
+	"miniproject2/modules/customer"
 	"miniproject2/utils/db"
+
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
@@ -21,8 +22,8 @@ func main() {
 	adminHandler := admin.NewRouter(dbCrud)
 	adminHandler.Handle(versionRoute)
 
-	userHandler := user.NewRouter(dbCrud)
-	userHandler.Handle(versionRoute)
+	customerHandler := customer.NewRouter(dbCrud)
+	customerHandler.Handle(versionRoute)
 
 	errRouter := router.Run(":8080")
 	if errRouter != nil {

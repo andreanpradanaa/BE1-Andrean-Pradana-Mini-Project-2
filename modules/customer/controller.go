@@ -27,8 +27,8 @@ func (uc controllerCustomer) CreateCustomer(req CustomerParam) (any, error) {
 			ResponseTime: "",
 		},
 		Data: CustomerParam{
-			FirstName: customer.Firstname,
-			LastName:  customer.Lastname,
+			Firstname: customer.Firstname,
+			Lastname:  customer.Lastname,
 			Email:     customer.Email,
 			Avatar:    customer.Avatar,
 		},

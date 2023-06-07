@@ -21,8 +21,8 @@ func (uc useCaseCustomer) CreateCustomer(customer CustomerParam) (entities.Custo
 	var newCustomer *entities.Customer
 
 	newCustomer = &entities.Customer{
-		Firstname: customer.FirstName,
-		Lastname:  customer.LastName,
+		Firstname: customer.Firstname,
+		Lastname:  customer.Lastname,
 		Email:     customer.Email,
 		Avatar:    customer.Avatar,
 		CreatedAt: time.Now(),
@@ -46,8 +46,8 @@ func (uc useCaseCustomer) UpdateCustomer(customer CustomerParam, id uint) (any, 
 	var editCustomer *entities.Customer
 	editCustomer = &entities.Customer{
 		ID:        id,
-		Firstname: customer.FirstName,
-		Lastname:  customer.LastName,
+		Firstname: customer.Firstname,
+		Lastname:  customer.Lastname,
 		Email:     customer.Email,
 		Avatar:    customer.Avatar,
 		CreatedAt: time.Now(),
