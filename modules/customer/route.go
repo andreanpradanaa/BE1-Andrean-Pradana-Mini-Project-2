@@ -3,6 +3,7 @@ package customer
 import (
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
+	"miniproject2/middleware"
 )
 
 type RouterCustomer struct {
@@ -20,6 +21,8 @@ func NewRouter(
 func (r RouterCustomer) Handle(routeVersion *gin.RouterGroup) {
 	basepath := "/customer"
 	user := routeVersion.Group(basepath)
+
+	user.Use(middleware.AuthMiddleware())
 
 	user.POST("/",
 		r.CustomerRequestHandler.CreateCustomer,

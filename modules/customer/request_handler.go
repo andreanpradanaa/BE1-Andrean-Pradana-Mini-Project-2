@@ -26,7 +26,7 @@ func NewCustomerRequestHandler(
 
 func (h RequestHandlerCustomer) CreateCustomer(c *gin.Context) {
 	request := CustomerParam{}
-	err := c.Bind(&request)
+	err := c.BindJSON(&request)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, dto.DefaultBadRequestResponse())
 		return
